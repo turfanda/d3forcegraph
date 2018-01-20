@@ -3,9 +3,10 @@ var d3;
 var svg = d3.select("svg"),
  width =+svg.attr("width"),
  height =+svg.attr("height");
+var radius = 10;
 
   var simulation = d3.forceSimulation()
-  .force("charge", d3.forceManyBody().distanceMax(150))
+  .force("charge", d3.forceManyBody())
   .force("center", d3.forceCenter(width / 2, height / 2))
   .force("link", d3.forceLink().id(function(d) { return d.index}));
 
@@ -38,7 +39,7 @@ var node = svg.append("g")
         .data(data.nodes)
         .enter()
         .append("circle")
-        .attr("r", 10)
+        .attr("r", radius)
         .attr("fill", "red").call(d3.drag()
           .on("start", dragstarted)
           .on("drag", dragged)
@@ -64,8 +65,8 @@ var node = svg.append("g")
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+node.attr("cx", function(d) { return d.x = Math.max(radius, Math.min(width - radius, d.x)); })
+        .attr("cy", function(d) { return d.y = Math.max(radius, Math.min(height - radius, d.y)); });
   }
 
 });
