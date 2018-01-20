@@ -30,17 +30,18 @@ var nodes = svg.append("g")
   
   var simulation = d3.forceSimulation()
   .force("charge", d3.forceManyBody())
-  .force("center", d3.forceCenter(width / 2, height / 2));
- // .force("link", d3.forceLink().id(function(d,i) { return i }))
+  .force("center", d3.forceCenter(width / 2, height / 2))
+  .force("link", d3.forceLink().id(function(d) { return d.index}));
   
-  simulation.nodes(nodes).on("tick", ticked);
+  simulation.nodes(data.nodes).on("tick", ticked);
+  simulation.force("link").links("data.links")
   
   
   function ticked() {
-    /*links.attr("x1", function(d) { return d.source.x; })
+    link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });*/
+        .attr("y2", function(d) { return d.target.y; });
 
     nodes.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
