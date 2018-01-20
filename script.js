@@ -26,12 +26,12 @@ var nodes = svg.append("g")
     .selectAll("line")
     .data(data.links)
     .enter().append("line")
-      .attr("stroke-width", 2);  
+    .attr("stroke-width", 2);  
   
   var simulation = d3.forceSimulation()
   .force("charge", d3.forceManyBody())
-  .force("center", d3.forceCenter(width / 2, height / 2))
-  .force("link", d3.forceLink().id(function(d,i) { return i }))
+  .force("center", d3.forceCenter(width / 2, height / 2));
+ // .force("link", d3.forceLink().id(function(d,i) { return i }))
   
   simulation.nodes(nodes).on("tick", ticked);
   
