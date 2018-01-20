@@ -51,7 +51,8 @@ var node = svg.append("g")
     .enter().append("line")
     .attr("stroke-width", 2);  
   
-
+ node.append("title").data(data.nodes)
+      .text(function(d) { return d.country});
   
   simulation.nodes(data.nodes).on("tick", ticked);
   simulation.force("link").links(data.links)
