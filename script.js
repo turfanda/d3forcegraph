@@ -65,8 +65,8 @@ var node = svg.append("g")
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    node.attr("x", function(d) { return d.x; })
-        .attr("y", function(d) { return d.y; });
+   node .attr("x", function(d) { return d.x = Math.max(20, Math.min(width - 20, d.x)); })
+        .attr("y", function(d) { return d.y = Math.max(10, Math.min(height - 10, d.y)); });
   }
 
 });

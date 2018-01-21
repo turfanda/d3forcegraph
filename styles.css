@@ -1,4 +1,6 @@
-
+body{
+  text-align:center;
+}
 
 .links line {
   stroke: #999;
@@ -7,6 +9,11 @@
 
 .flag-box {
 	position: absolute;
+}
+
+svg {
+	box-shadow: -3px 3px 20px black;
+	background-color: #99ccff;
 }
 
 
